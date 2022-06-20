@@ -58,12 +58,13 @@ análises:
 library(irpfrv)
 ```
 
-A primeira função disponível é a analise_geral. Para executá-la deve ser
-fornecido o arquivo obtido pelo site da B3 e a classe do ativo que deve
-ser analisado. Existem 3 opções: 1. acoes 2. fiis 3. etfs Ela retorna o
-codigo de negociação, o código geral do ativo, o preço médio, o custo de
-aquisição, o número/quantidade de cada ativo e o nome da empresa. Essa
-função dá uma visão geral dos seus investimentos.
+A primeira função disponível é a **analise_geral**. Para executá-la deve
+ser fornecido o arquivo obtido pelo site da B3 e a classe do ativo que
+deve ser analisado. Existem 3 opções:  
+\* acoes \* fiis \* etfs.  
+Ela retorna o codigo de negociação, o código geral do ativo, o preço
+médio, o custo de aquisição, o número/quantidade de cada ativo e o nome
+da empresa. Essa função dá uma visão geral dos seus investimentos.
 
 ``` r
 analise_geral("../pacotefiles/cei_compilado.xlsx", classe = acoes)
