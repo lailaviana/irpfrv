@@ -29,18 +29,50 @@ Você pode instalar a versão em desenvolvimento do irpfrv através do [GitHub](
 devtools::install.github("lailaviana/irpfrv")
 ```
 
-## Exemplo
 
-Esse é um exemplo básico de como carregar o pacote:
-
-```{r example}
-library(irpfrv)
-```
-
-## Adquirindo seus dados:
+## Adquirindo seus dados
 
 1. Para obter os seus dados de negociação em bolsa de valores, entre no site da [B3](https://www.investidor.b3.com.br/) e acesse sua conta.
 2. Ao entrar, clique em **Menu** e logo depois em **Extrato**. No canto superior esquerdo, selecionar **Negociação**. 
 3. Nessa tela, já haverá as últimas movimentações feitas pelo usuário. Porém para baixar os dados, é necessário clicar no canto superior direito em **Filtrar** e selecionar a Data Inicial e Data Final que quer recuperar. É importante ressaltar que a B3 só disponibiliza a visualização no site ou realização do download de um período igual ou inferior a 12 meses (por consulta), com data inicial a partir de 01/11/2019. 
 4. Feito isso, clicar em **Filtrar**. Abrirá uma nova página e no rodapé terá a opção de **Baixar o Extrato**, seleciona-se então o formato **Excel**. Esse é o arquivo necessário para que o pacote consiga fazer os cálculos e gere os arquivos auxiliares para o preenchimento do IRPF.
 
+## Estrutura do arquivo baixado
+
+A tabela baixada deve conter as seguintes informações:
+1. Coluna 1: Data do Negócio
+2. Coluna 2: Tipo de Movimentação
+3. Coluna 3: Mercado
+4. Coluna 4: Prazo/Vencimento
+5. Coluna 5: Instituição
+6. Coluna 6: Código de Negociação
+7. Coluna 7: Quantidade
+8. Coluna 8: Preço
+9. Coluna 9: Valor
+
+## Exemplo
+
+Esse é um exemplo básico de como carregar o pacote e realizar as análises:
+
+```{r example}
+library(irpfrv)
+```
+
+A primeira função disponível é a analise_geral. Para executá-la deve ser fornecido o arquivo obtido pelo site da B3 e a classe do ativo que deve ser analisado. Existem 3 opções:
+1. acoes
+2. fiis
+3. etfs
+Ela retorna o codigo de negociação, o código geral do ativo, o preço médio, o custo de aquisição, o número/quantidade de cada ativo e o nome da empresa. Essa função dá uma visão geral dos seus investimentos.    
+
+```{r}
+analise_geral("../pacotefiles/cei_compilado.xlsx", classe = acoes)
+```
+A mesma função agora sendo executada filtrando pela classe de fiis.
+
+```{r}
+analise_geral("../pacotefiles/cei_compilado.xlsx", classe = fiis)
+```
+No caso de não haver nenhum ativo de certa classe, ele retorna uma tibble vazia, como abaixo.  
+```{r}
+analise_geral("../pacotefiles/cei_compilado.xlsx", classe = etfs)
+```

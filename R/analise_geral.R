@@ -13,6 +13,8 @@ analise_geral <- function(arquivo_cei = arquivo_cei,
                         classe = acoes) {
   readxl::read_excel(arquivo_cei) %>%
     janitor::clean_names() %>%
+    dplyr::select(codigo_de_negociacao, tipo_de_movimentacao,
+                  data_do_negocio, quantidade, valor, preco) %>%
     dplyr::mutate(
       valor = dplyr::case_when(tipo_de_movimentacao == "Venda" ~ valor*(-1),
                                TRUE ~ valor),
