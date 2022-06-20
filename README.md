@@ -71,20 +71,21 @@ ser fornecido o arquivo obtido pelo site da B3 e a classe do ativo que
 deve ser analisado. Existem 3 opções:  
 - acoes  
 - fiis  
-- etfs.  
+- etfs
+
 Ela retorna o codigo de negociação, o código geral do ativo, o preço
 médio, o custo de aquisição, o número/quantidade de cada ativo e o nome
 da empresa. Essa função dá uma visão geral dos seus investimentos.
 
 ``` r
-acoes <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = acoes)
+acoes <- analise_geral("../pacotefiles/b3_negociacao.xlsx", classe = acoes)
 acoes |> head(5)
 #> # A tibble: 5 x 6
 #>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos empresa 
 #>   <chr>                <chr>        <dbl>           <dbl>         <dbl> <chr>   
 #> 1 BBAS3F               BBAS3        32.3            323.             10 BCO BRA~
 #> 2 BBSE3F               BBSE3        24.8            594.             24 BB SEGU~
-#> 3 BIDI4F               BIDI4        23.2           -139.             -6 BANCO I~
+#> 3 BIDI4F               BIDI4        16.8            219.             13 BANCO I~
 #> 4 CASH3F               CASH3        21.9             87.6             4 MÉLIUZ ~
 #> 5 CIEL3F               CIEL3         4.26             0               0 CIELO S~
 ```
@@ -94,7 +95,7 @@ output gerado é bem semelhante ao de ações, com a única diferença de que
 é fornecido o nome do fundo e também o seu administrador.
 
 ``` r
-fiis <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = fiis)
+fiis <- analise_geral("../pacotefiles/b3_negociacao.xlsx", classe = fiis)
 fiis |> head(5)
 #> # A tibble: 5 x 7
 #>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos nome    
@@ -111,7 +112,7 @@ No caso de não haver nenhum ativo de certa classe, ele retorna uma
 tibble vazia, como abaixo.
 
 ``` r
-etfs <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = etfs)
+etfs <- analise_geral("../pacotefiles/b3_negociacao.xlsx", classe = etfs)
 etfs
 #> # A tibble: 0 x 6
 #> # ... with 6 variables: codigo_de_negociacao <chr>, codigo <chr>,
