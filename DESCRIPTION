@@ -1,0 +1,21 @@
+Package: irpfrv
+Title: Analisa E Gera Discriminacao De Cada Ativo de Renda Varivel Para o IRPF
+Version: 0.0.0.9000
+Authors@R: 
+    person("Laila", "Viana", , "lailavalmeida@gmail.com", role = c("aut", "cre"))
+Description: O pacote recebe um dataframe contendo as ordens de compra e venda de ativos de renda variavel realizadas ao longo dos anos e calcula o quantidade de cada ativo, alem do custo de aquisicao e o preco medio. Feito isso, com o intuito de auxiliar na declaracao do imposto de renda, sera gerado a descriminacao para cada ativo, que podera ser copiado e colado no programa de declaracao da receita federal. Por fim, o pacote tambem gera a situacao de cada ano de cada ativo, que tambem e necessario fornecer para o site da receita.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
+Imports: 
+    dplyr,
+    janitor,
+    lubridate,
+    magrittr,
+    readr,
+    readxl,
+    stringr
+Depends: 
+    R (>= 2.10)
+LazyData: true
