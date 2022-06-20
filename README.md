@@ -49,7 +49,7 @@ Coluna 4: Prazo/Vencimento 5. Coluna 5: Instituição 6. Coluna 6: Código
 de Negociação 7. Coluna 7: Quantidade 8. Coluna 8: Preço 9. Coluna 9:
 Valor
 
-## Exemplo
+## Exemplos de como executar as funções do pacote
 
 Esse é um exemplo básico de como carregar o pacote e realizar as
 análises:
@@ -58,37 +58,37 @@ análises:
 library(irpfrv)
 ```
 
+### Gerando a análise geral dos seus investimentos
+
 A primeira função disponível é a **analise_geral**. Para executá-la deve
 ser fornecido o arquivo obtido pelo site da B3 e a classe do ativo que
 deve ser analisado. Existem 3 opções:  
-\* acoes \* fiis \* etfs.  
+- acoes - fiis - etfs.  
 Ela retorna o codigo de negociação, o código geral do ativo, o preço
 médio, o custo de aquisição, o número/quantidade de cada ativo e o nome
 da empresa. Essa função dá uma visão geral dos seus investimentos.
 
 ``` r
-analise_geral("../pacotefiles/cei_compilado.xlsx", classe = acoes)
-#> # A tibble: 24 x 6
-#>    codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos empresa
-#>    <chr>                <chr>        <dbl>           <dbl>         <dbl> <chr>  
-#>  1 BBAS3F               BBAS3        32.3            323.             10 BCO BR~
-#>  2 BBSE3F               BBSE3        24.8            594.             24 BB SEG~
-#>  3 BIDI4F               BIDI4        23.2           -139.             -6 BANCO ~
-#>  4 CASH3F               CASH3        21.9             87.6             4 MÉLIUZ~
-#>  5 CIEL3F               CIEL3         4.26             0               0 CIELO ~
-#>  6 COGN3F               COGN3         6.9              0               0 COGNA ~
-#>  7 ENBR3F               ENBR3        17.9            340.             19 EDP - ~
-#>  8 GOLL4F               GOLL4        15.8              0               0 GOL LI~
-#>  9 HYPE3F               HYPE3        32.4            324.             10 HYPERA~
-#> 10 ITSA4F               ITSA4        10.0            482.             48 ITAUSA~
-#> # ... with 14 more rows
+acoes <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = acoes)
+acoes |> head(5)
+#> # A tibble: 5 x 6
+#>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos empresa 
+#>   <chr>                <chr>        <dbl>           <dbl>         <dbl> <chr>   
+#> 1 BBAS3F               BBAS3        32.3            323.             10 BCO BRA~
+#> 2 BBSE3F               BBSE3        24.8            594.             24 BB SEGU~
+#> 3 BIDI4F               BIDI4        23.2           -139.             -6 BANCO I~
+#> 4 CASH3F               CASH3        21.9             87.6             4 MÉLIUZ ~
+#> 5 CIEL3F               CIEL3         4.26             0               0 CIELO S~
 ```
 
-A mesma função agora sendo executada filtrando pela classe de fiis.
+A mesma função agora sendo executada filtrando pela classe de fiis. O
+output gerado é bem semelhante ao de ações, com a única diferença de que
+é fornecido o nome do fundo e também o seu administrador.
 
 ``` r
-analise_geral("../pacotefiles/cei_compilado.xlsx", classe = fiis)
-#> # A tibble: 8 x 7
+fiis <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = fiis)
+fiis |> head(5)
+#> # A tibble: 5 x 7
 #>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos nome    
 #>   <chr>                <chr>        <dbl>           <dbl>         <dbl> <chr>   
 #> 1 HGRU11               HGRU11       118.             236.             2 CSHG Re~
@@ -96,9 +96,6 @@ analise_geral("../pacotefiles/cei_compilado.xlsx", classe = fiis)
 #> 3 TGAR11               TGAR11       122.             245.             2 TG Ativ~
 #> 4 VGIR11               VGIR11        80.1            240.             3 Valora ~
 #> 5 VILG11               VILG11       119.             357.             3 Vinci L~
-#> 6 VINO11               VINO11        58.4            408.             7 Vinci O~
-#> 7 VISC11               VISC11       108.             215.             2 Vinci S~
-#> 8 XPIN11               XPIN11       114.             227.             2 XP Indu~
 #> # ... with 1 more variable: administrador <chr>
 ```
 
@@ -106,8 +103,30 @@ No caso de não haver nenhum ativo de certa classe, ele retorna uma
 tibble vazia, como abaixo.
 
 ``` r
-analise_geral("../pacotefiles/cei_compilado.xlsx", classe = etfs)
+etfs <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = etfs)
+etfs
 #> # A tibble: 0 x 6
 #> # ... with 6 variables: codigo_de_negociacao <chr>, codigo <chr>,
 #> #   preco_medio <dbl>, custo_aquisicao <dbl>, numero_ativos <dbl>, nome <chr>
+```
+
+### Gerando a discriminação de cada ativo
+
+As próximas funções que serão abordadas, geram um texto que pode ser
+copiado e colado na parte de discriminação de cada ativo. Para
+executá-la será preciso fornecer o output da função anterior. Sendo
+assim para ações deve ser executado o seguinte comando:
+
+``` r
+discriminacao_acoes(acoes) |> head(2)
+#> [1] "10 ACOES DA EMPRESA BCO BRASIL S.A. NEGOCIADAS NA B3 COM O CODIGO BBAS3F, ADQUIRIDAS PELO VALOR TOTAL DE R$ 322.88 AO PRECO MEDIO DE R$ 32.29"                 
+#> [2] "24 ACOES DA EMPRESA BB SEGURIDADE PARTICIPAÇÕES S.A. NEGOCIADAS NA B3 COM O CODIGO BBSE3F, ADQUIRIDAS PELO VALOR TOTAL DE R$ 594.26 AO PRECO MEDIO DE R$ 24.76"
+```
+
+Para gerar a discriminação dos fiis:
+
+``` r
+discriminacao_fiis(fiis) |> head(2)
+#> [1] "2 COTA(S) DO FUNDO IMOBILIARIO CSHG Renda Urbana, NEGOCIADAS NA B3 COM O CODIGO HGRU11, ADMINISTRADO POR CREDIT SUISSE ADQUIRIDAS PELO VALOR TOTAL DE 236.38 AO PRECO MEDIO DE 118.19"
+#> [2] "3 COTA(S) DO FUNDO IMOBILIARIO HSI Malls, NEGOCIADAS NA B3 COM O CODIGO HSML11, ADMINISTRADO POR SANTANDER CACEIS ADQUIRIDAS PELO VALOR TOTAL DE 265.1 AO PRECO MEDIO DE 88.37"
 ```

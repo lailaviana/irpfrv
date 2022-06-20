@@ -50,7 +50,7 @@ A tabela baixada deve conter as seguintes informações:
 8. Coluna 8: Preço
 9. Coluna 9: Valor
 
-## Exemplo
+## Exemplos de como executar as funções do pacote
 
 Esse é um exemplo básico de como carregar o pacote e realizar as análises:
 
@@ -58,21 +58,38 @@ Esse é um exemplo básico de como carregar o pacote e realizar as análises:
 library(irpfrv)
 ```
 
+### Gerando a análise geral dos seus investimentos
 A primeira função disponível é a **analise_geral**. Para executá-la deve ser fornecido o arquivo obtido pelo site da B3 e a classe do ativo que deve ser analisado. Existem 3 opções:  
-* acoes
-* fiis
-* etfs.    
+- acoes
+- fiis
+- etfs.    
 Ela retorna o codigo de negociação, o código geral do ativo, o preço médio, o custo de aquisição, o número/quantidade de cada ativo e o nome da empresa. Essa função dá uma visão geral dos seus investimentos.    
 
 ```{r}
-analise_geral("../pacotefiles/cei_compilado.xlsx", classe = acoes)
+acoes <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = acoes)
+acoes |> head(5)
 ```
-A mesma função agora sendo executada filtrando pela classe de fiis.
+A mesma função agora sendo executada filtrando pela classe de fiis. O output gerado é bem semelhante ao de ações, com a única diferença de que 
+é fornecido o nome do fundo e também o seu administrador. 
 
 ```{r}
-analise_geral("../pacotefiles/cei_compilado.xlsx", classe = fiis)
+fiis <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = fiis)
+fiis |> head(5)
 ```
-No caso de não haver nenhum ativo de certa classe, ele retorna uma tibble vazia, como abaixo.  
+No caso de não haver nenhum ativo de certa classe, ele retorna uma tibble vazia, como abaixo. 
+
 ```{r}
-analise_geral("../pacotefiles/cei_compilado.xlsx", classe = etfs)
+etfs <- analise_geral("../pacotefiles/cei_compilado.xlsx", classe = etfs)
+etfs
+```
+
+### Gerando a discriminação de cada ativo
+As próximas funções que serão abordadas, geram um texto que pode ser copiado e colado na parte de discriminação de cada ativo. Para executá-la será preciso fornecer o output da função anterior. Sendo assim para ações deve ser executado o seguinte comando:
+
+```{r}
+discriminacao_acoes(acoes) |> head(2)
+```
+Para gerar a discriminação dos fiis:  
+```{r}
+discriminacao_fiis(fiis) |> head(2)
 ```
