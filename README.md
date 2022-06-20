@@ -8,9 +8,9 @@
 
 O objetivo do pacote irpfrv é gerar arquivos importantes para o auxílio
 do preenchimento dos dados de renda variável do imposto de renda pessoa
-física. Ele gera arquivos de discriminação e a situação anual de cada
-ativo de renda variável, como ações, fundos de investimento imobiliário
-e ETFs.
+física (IRPF). Ele gera arquivos de discriminação e a situação anual de
+cada ativo de renda variável, como ações, fundos de investimento
+imobiliário e ETFs.
 
 ## Instalação
 
@@ -22,38 +22,26 @@ Você pode instalar a versão em desenvolvimento do irpfrv através do
 devtools::install.github("lailaviana/irpfrv")
 ```
 
-## Example
+## Exemplo
 
-This is a basic example which shows you how to solve a common problem:
+Esse é um exemplo básico de como executar as funções disponíveis desse
+projeto:
 
 ``` r
 library(irpfrv)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+Para obter os seus dados de negociação em bolsa de valores, acesse o
+site da [B3](https://www.investidor.b3.com.br/) e acesse sua conta. Ao
+entrar, clique em Menu e logo depois em Extrato. No canto superior
+esquerdo, selecionar Negociação. Nessa tela, já haverá as últimas
+movimentações feitas pelo usuário. Porém para baixar os dados, é
+necessário clicar no canto superior direito em Filtrar e selecionar a
+Data Inicial e Data Final que quer recuperar. É importante ressaltar que
+a B3 só disponibiliza a visualização no site ou realização do download
+de um período igual ou inferior a 12 meses (por consulta), com data
+inicial a partir de 01/11/2019. Feito isso, clicar em filtrar. Abrirá
+uma nova página e no rodapé terá a opção de Baixar o Extrato,
+seleciona-se então o formato Excel. Esse é o arquivo necessário para que
+o pacote consiga fazer os cálculos e gere os arquivos auxiliares para o
+preenchimento do IRPF.
