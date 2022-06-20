@@ -40,15 +40,16 @@ devtools::install.github("lailaviana/irpfrv")
 ## Estrutura do arquivo baixado
 
 A tabela baixada deve conter as seguintes informações:
-1. Coluna 1: Data do Negócio
-2. Coluna 2: Tipo de Movimentação
-3. Coluna 3: Mercado
-4. Coluna 4: Prazo/Vencimento
-5. Coluna 5: Instituição
-6. Coluna 6: Código de Negociação
-7. Coluna 7: Quantidade
-8. Coluna 8: Preço
-9. Coluna 9: Valor
+
+1. Coluna 1: Data do Negócio  
+2. Coluna 2: Tipo de Movimentação  
+3. Coluna 3: Mercado  
+4. Coluna 4: Prazo/Vencimento  
+5. Coluna 5: Instituição  
+6. Coluna 6: Código de Negociação  
+7. Coluna 7: Quantidade  
+8. Coluna 8: Preço  
+9. Coluna 9: Valor  
 
 ## Exemplos de como executar as funções do pacote
 
@@ -60,8 +61,8 @@ library(irpfrv)
 
 ### Gerando a análise geral dos seus investimentos
 A primeira função disponível é a **analise_geral**. Para executá-la deve ser fornecido o arquivo obtido pelo site da B3 e a classe do ativo que deve ser analisado. Existem 3 opções:  
-- acoes
-- fiis
+- acoes  
+- fiis  
 - etfs.    
 Ela retorna o codigo de negociação, o código geral do ativo, o preço médio, o custo de aquisição, o número/quantidade de cada ativo e o nome da empresa. Essa função dá uma visão geral dos seus investimentos.    
 
