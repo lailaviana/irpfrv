@@ -4,10 +4,10 @@
 \alias{discriminacao_fiis}
 \title{Gerando a discriminacao dos fiis}
 \usage{
-discriminacao_fiis(cei_fiis)
+discriminacao_fiis(b3_fiis)
 }
 \arguments{
-\item{cei_fiis}{arquivo de saida do script analise_geral filtrado por fiis}
+\item{b3_fiis}{arquivo de saida do script analise_geral filtrado por fiis}
 }
 \value{
 um arquivo de texto

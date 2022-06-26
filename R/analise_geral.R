@@ -2,16 +2,16 @@
 #'
 #' Essa funcao calcula o preço medio, o custo de aquisicao e a quantidade de cada ativo que a pessoa possui em carteria
 #'
-#' @param arquivo_cei tabela xlsx contendo o extrato de negociação dos ativos de renda variavel gerada pelo site da B3
+#' @param arquivo_b3 tabela xlsx contendo o extrato de negociação dos ativos de renda variavel gerada pelo site da B3
 #' @param classe qual classe de ativo deve ser analisado (acoes, etfs ou fiis), sem aspas
 #'
 #' @return uma tibble
 #' @export
 #'
 #' @examples
-analise_geral <- function(arquivo_cei = arquivo_cei,
+analise_geral <- function(arquivo_b3 = arquivo_b3,
                         classe = acoes) {
-  readxl::read_excel(arquivo_cei) %>%
+  readxl::read_excel(arquivo_b3) %>%
     janitor::clean_names() %>%
     dplyr::select(codigo_de_negociacao, tipo_de_movimentacao,
                   data_do_negocio, quantidade, valor, preco) %>%

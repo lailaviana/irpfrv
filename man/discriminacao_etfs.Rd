@@ -4,10 +4,10 @@
 \alias{discriminacao_etfs}
 \title{Gerando a discriminacao dos etfs}
 \usage{
-discriminacao_etfs(cei_etfs)
+discriminacao_etfs(b3_etfs)
 }
 \arguments{
-\item{cei_etfs}{arquivo de saida do script analise_geral filtrado por etfs}
+\item{b3_etfs}{arquivo de saida do script analise_geral filtrado por etfs}
 }
 \value{
 um arquivo de texto

@@ -4,10 +4,10 @@
 \alias{analise_geral}
 \title{Analise geral dos seus ativos}
 \usage{
-analise_geral(arquivo_cei = arquivo_cei, classe = acoes)
+analise_geral(arquivo_b3 = arquivo_b3, classe = acoes)
 }
 \arguments{
-\item{arquivo_cei}{tabela xlsx contendo o extrato de negociação dos ativos de renda variavel gerada pelo site da B3}
+\item{arquivo_b3}{tabela xlsx contendo o extrato de negociação dos ativos de renda variavel gerada pelo site da B3}
 
 \item{classe}{qual classe de ativo deve ser analisado (acoes, etfs ou fiis), sem aspas}
 }

@@ -4,10 +4,10 @@
 \alias{discriminacao_acoes}
 \title{Gerando a discriminacao das acoes}
 \usage{
-discriminacao_acoes(cei_acoes)
+discriminacao_acoes(b3_acoes)
 }
 \arguments{
-\item{cei_acoes}{arquivo de saida do script analise_geral filtrado por acoes}
+\item{b3_acoes}{arquivo de saida do script analise_geral filtrado por acoes}
 }
 \value{
 um arquivo de texto

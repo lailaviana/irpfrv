@@ -4,10 +4,10 @@
 \alias{situacao}
 \title{Situação anual dos seus ativos}
 \usage{
-situacao(arquivo_cei = arquivo_cei)
+situacao(arquivo_b3 = arquivo_b3)
 }
 \arguments{
-\item{arquivo_cei}{tabela xlsx contendo o extrato de negociacao dos ativos de renda variavel gerada pelo site da B}
+\item{arquivo_b3}{tabela xlsx contendo o extrato de negociacao dos ativos de renda variavel gerada pelo site da B}
 }
 \value{
 uma tibble

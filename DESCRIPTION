@@ -21,3 +21,6 @@ Depends:
 LazyData: true
 URL: https://github.com/lailaviana/irpfrv
 BugReports: https://github.com/lailaviana/irpfrv/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

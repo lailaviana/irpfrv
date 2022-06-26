@@ -1,13 +1,13 @@
 #' Situação anual dos seus ativos
 #'
-#' @param arquivo_cei tabela xlsx contendo o extrato de negociacao dos ativos de renda variavel gerada pelo site da B
+#' @param arquivo_b3 tabela xlsx contendo o extrato de negociacao dos ativos de renda variavel gerada pelo site da B
 #'
 #' @return uma tibble
 #' @export
 #'
 #' @examples
-situacao <- function(arquivo_cei = arquivo_cei) {
-  readxl::read_excel(arquivo_cei) %>% janitor::clean_names() %>%
+situacao <- function(arquivo_b3 = arquivo_b3) {
+  readxl::read_excel(arquivo_b3) %>% janitor::clean_names() %>%
     dplyr::mutate(
       valor = dplyr::case_when(tipo_de_movimentacao == "Venda" ~ valor*(-1),
                                TRUE ~ valor),
