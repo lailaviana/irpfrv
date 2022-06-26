@@ -78,7 +78,7 @@ médio, o custo de aquisição, o número/quantidade de cada ativo e o nome
 da empresa. Essa função dá uma visão geral dos seus investimentos.
 
 ``` r
-acoes <- analise_geral("../pacotefiles/b3_negociacao.xlsx", classe = acoes)
+acoes <- analise_geral("inst/b3_negociacao.xlsx", classe = acoes)
 acoes |> head(5)
 #> # A tibble: 5 x 6
 #>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos empresa 
@@ -95,7 +95,7 @@ output gerado é bem semelhante ao de ações, com a única diferença de que
 é fornecido o nome do fundo e também o seu administrador.
 
 ``` r
-fiis <- analise_geral("../pacotefiles/b3_negociacao.xlsx", classe = fiis)
+fiis <- analise_geral("inst/b3_negociacao.xlsx", classe = fiis)
 fiis |> head(5)
 #> # A tibble: 5 x 7
 #>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos nome    
@@ -112,7 +112,7 @@ No caso de não haver nenhum ativo de certa classe, ele retorna uma
 tibble vazia, como abaixo.
 
 ``` r
-etfs <- analise_geral("../pacotefiles/b3_negociacao.xlsx", classe = etfs)
+etfs <- analise_geral("inst/b3_negociacao.xlsx", classe = etfs)
 etfs
 #> # A tibble: 0 x 6
 #> # ... with 6 variables: codigo_de_negociacao <chr>, codigo <chr>,
@@ -138,4 +138,23 @@ Para gerar a discriminação dos fiis:
 discriminacao_fiis(fiis) |> head(2)
 #> [1] "2 COTA(S) DO FUNDO IMOBILIARIO CSHG Renda Urbana, NEGOCIADAS NA B3 COM O CODIGO HGRU11, ADMINISTRADO POR CREDIT SUISSE ADQUIRIDAS PELO VALOR TOTAL DE 236.38 AO PRECO MEDIO DE 118.19"
 #> [2] "3 COTA(S) DO FUNDO IMOBILIARIO HSI Malls, NEGOCIADAS NA B3 COM O CODIGO HSML11, ADMINISTRADO POR SANTANDER CACEIS ADQUIRIDAS PELO VALOR TOTAL DE 265.1 AO PRECO MEDIO DE 88.37"
+```
+
+### Gerando a situação anual de cada ativo
+
+A função recebe o arquivo gerado pela B3 e te retorna um dataframe
+mostrando ano a ano a situação daquele ativo no dia 31/12. Para a sua
+declaração basta copiar e colar os valores gerados.
+
+``` r
+situacao <- situacao("inst/b3_negociacao.xlsx")
+situacao |> head(4)
+#> # A tibble: 4 x 3
+#> # Groups:   codigo_de_negociacao [2]
+#>   codigo_de_negociacao   ano cumulativo_ano
+#>   <chr>                <dbl>          <dbl>
+#> 1 BBAS3F                2020           247.
+#> 2 BBAS3F                2021           320.
+#> 3 BBSE3F                2020           319.
+#> 4 BBSE3F                2021           586.
 ```
