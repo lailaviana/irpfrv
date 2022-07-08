@@ -1,3 +1,3 @@
 test_that("situacao funciona", {
-    expect_error(situacao())
+  expect_error(situacao())
 })
