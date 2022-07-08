@@ -78,16 +78,19 @@ médio, o custo de aquisição, o número/quantidade de cada ativo e o nome
 da empresa. Essa função dá uma visão geral dos seus investimentos.
 
 ``` r
-acoes <- analise_geral("inst/b3_negociacao.xlsx", classe = acoes)
+arquivo_b3 <- system.file("b3_negociacao.xlsx", package = "irpfrv")
+
+acoes <- analise_geral(arquivo_b3, classe = acoes)
+
 acoes |> head(5)
-#> # A tibble: 5 x 6
+#> # A tibble: 5 × 6
 #>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos empresa 
 #>   <chr>                <chr>        <dbl>           <dbl>         <dbl> <chr>   
-#> 1 BBAS3F               BBAS3        32.3            323.             10 BCO BRA~
-#> 2 BBSE3F               BBSE3        24.8            594.             24 BB SEGU~
-#> 3 BIDI4F               BIDI4        16.8            219.             13 BANCO I~
-#> 4 CASH3F               CASH3        21.9             87.6             4 MÉLIUZ ~
-#> 5 CIEL3F               CIEL3         4.26             0               0 CIELO S~
+#> 1 BBAS3F               BBAS3        32.3            323.             10 BCO BRA…
+#> 2 BBSE3F               BBSE3        24.8            594.             24 BB SEGU…
+#> 3 BIDI4F               BIDI4        16.8            219.             13 BANCO I…
+#> 4 CASH3F               CASH3        21.9             87.6             4 MÉLIUZ …
+#> 5 CIEL3F               CIEL3         4.26             0               0 CIELO S…
 ```
 
 A mesma função agora sendo executada filtrando pela classe de fiis. O
@@ -95,27 +98,28 @@ output gerado é bem semelhante ao de ações, com a única diferença de que
 é fornecido o nome do fundo e também o seu administrador.
 
 ``` r
-fiis <- analise_geral("inst/b3_negociacao.xlsx", classe = fiis)
+fiis <- analise_geral(arquivo_b3, classe = fiis)
+
 fiis |> head(5)
-#> # A tibble: 5 x 7
+#> # A tibble: 5 × 7
 #>   codigo_de_negociacao codigo preco_medio custo_aquisicao numero_ativos nome    
 #>   <chr>                <chr>        <dbl>           <dbl>         <dbl> <chr>   
-#> 1 HGRU11               HGRU11       118.             236.             2 CSHG Re~
-#> 2 HSML11               HSML11        88.4            265.             3 HSI Mal~
-#> 3 TGAR11               TGAR11       122.             245.             2 TG Ativ~
-#> 4 VGIR11               VGIR11        80.1            240.             3 Valora ~
-#> 5 VILG11               VILG11       119.             357.             3 Vinci L~
-#> # ... with 1 more variable: administrador <chr>
+#> 1 HGRU11               HGRU11       118.             236.             2 CSHG Re…
+#> 2 HSML11               HSML11        88.4            265.             3 HSI Mal…
+#> 3 TGAR11               TGAR11       122.             245.             2 TG Ativ…
+#> 4 VGIR11               VGIR11        80.1            240.             3 Valora …
+#> 5 VILG11               VILG11       119.             357.             3 Vinci L…
+#> # … with 1 more variable: administrador <chr>
 ```
 
 No caso de não haver nenhum ativo de certa classe, ele retorna uma
 tibble vazia, como abaixo.
 
 ``` r
-etfs <- analise_geral("inst/b3_negociacao.xlsx", classe = etfs)
+etfs <- analise_geral(arquivo_b3, classe = etfs)
 etfs
-#> # A tibble: 0 x 6
-#> # ... with 6 variables: codigo_de_negociacao <chr>, codigo <chr>,
+#> # A tibble: 0 × 6
+#> # … with 6 variables: codigo_de_negociacao <chr>, codigo <chr>,
 #> #   preco_medio <dbl>, custo_aquisicao <dbl>, numero_ativos <dbl>, nome <chr>
 ```
 
@@ -147,9 +151,9 @@ mostrando ano a ano a situação daquele ativo no dia 31/12. Para a sua
 declaração basta copiar e colar os valores gerados.
 
 ``` r
-situacao <- situacao("inst/b3_negociacao.xlsx")
+situacao <- situacao(arquivo_b3)
 situacao |> head(4)
-#> # A tibble: 4 x 3
+#> # A tibble: 4 × 3
 #> # Groups:   codigo_de_negociacao [2]
 #>   codigo_de_negociacao   ano cumulativo_ano
 #>   <chr>                <dbl>          <dbl>
