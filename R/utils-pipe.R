@@ -18,4 +18,4 @@ utils::globalVariables(c("acoes", "codigo_de_negociacao", "preco",
                          "quantidade", "preco_medio", "numero_ativos",
                          "codigo", "custo_aquisicao", "data_do_negocio",
                          "codigo_de_negociacao", "ano", "valor", "soma",
-                         "cumulativo_ano"))
+                         "cumulativo_ano", "tipo_de_movimentacao"))
